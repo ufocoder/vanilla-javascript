@@ -6,7 +6,7 @@
   }
 
   window.document.addEventListener('DOMContentLoaded', function DOMReady() {
-    document.removeEventListener('DOMContentLoaded', DOMReady)
+    window.document.removeEventListener('DOMContentLoaded', DOMReady)
     while(DOMReadyStack.length) {
       DOMReadyStack.shift().call(document)
     }
