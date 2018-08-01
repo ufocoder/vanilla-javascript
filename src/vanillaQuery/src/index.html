@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vanilla Query</title>
+
+    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css" />
+
+    <script type="text/javascript" src="./assets/javascript/vanilla-query.js"></script>
+    <script type="text/javascript" src="./assets/javascript/vanilla-query.ajax.js"></script>
+
+    <script>
+      $(function() {
+        $('li').css('background', '#F0F0F0');
+        $('h1').addClass('selected').removeClass('selected')
+        $('p:first-child').remove()
+
+        $('button')
+          .on('click', function handleClick(e) {
+            console.log('You will see this only')
+            $(this).off('click', handleClick)
+          });
+
+        $.ajax('https://api.github.com/repos/ufocoder/vanilla-javascript', {
+          success: function(data) {
+            console.log(data)
+          },
+          error: function() {
+            console.error('Ops..')
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <main role="main" class="container">
+      <h1 class="mt-5">Vanilla Query</h1>
+      <p>TODO list</p>
+      <ul>
+        <li>Simple selector</li>
+        <li>CSS manipulation</li>
+        <li>CSS class manipulation</li>
+        <li>DOM manipulation</li>
+        <li>Event listeners⁄</li>
+        <li>AJAX request</li>
+      </ul>
+      <hr />
+      <p>Please don't push the button</p>
+      <button type="button" class="btn btn-primary">Boom !</button>
+    </main>
+  </body>
+</html>
