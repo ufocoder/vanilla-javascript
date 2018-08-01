@@ -115,7 +115,6 @@
       node.addEventListener(eventName, callback, false)
       node.eventHandlers.push({
         type: eventName,
-        node: node,
         callback: callback
       })
     })
@@ -126,7 +125,7 @@
       node
         .eventHandlers
         .filter(function(eventHandler) {
-          var hasEvent = eventHandler.node === node && eventHandler.type === eventName
+          var hasEvent = eventHandler.type === eventName
           if (callback) {
             return hasEvent && eventHandler.callback === callback
           }
