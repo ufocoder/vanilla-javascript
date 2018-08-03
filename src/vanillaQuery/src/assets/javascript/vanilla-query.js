@@ -2,13 +2,13 @@
   var DOMReadyStack = []
 
   function handleDOMReady(fn) {
-    window.document.readyState === 'complete' ? fn.call(document) : DOMReadyStack.push(fn)
+    window.document.readyState === 'complete' ? fn.call(window.document) : DOMReadyStack.push(fn)
   }
 
   window.document.addEventListener('DOMContentLoaded', function DOMReady() {
     window.document.removeEventListener('DOMContentLoaded', DOMReady)
     while(DOMReadyStack.length) {
-      DOMReadyStack.shift().call(document)
+      DOMReadyStack.shift().call(window.document)
     }
   })
 
@@ -26,7 +26,7 @@
     } else if (selector instanceof NodeList) {
       this.nodes = [].slice.call(selector)
     } else {
-      this.nodes = [].slice.call(document.querySelectorAll(selector))
+      this.nodes = [].slice.call(window.document.querySelectorAll(selector))
     }
 
     this.nodes.forEach(function(node) {
